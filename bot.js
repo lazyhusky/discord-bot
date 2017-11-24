@@ -4,7 +4,7 @@ const fs = require("fs");
 const prefix = botSettings.prefix;
 
 const bot = new Discord.Client({ disableEveryone: true });
-bot.command = new Discord.Collection();
+bot.commands = new Discord.Collection();
 
 fs.readdir("./cmds/", (err, files) => {
     if (err) console.error(err)
@@ -21,7 +21,7 @@ fs.readdir("./cmds/", (err, files) => {
     jsfiles.forEach((f, i) => {
         let props = require(`./cmds/${f}`);
         console.log(`${i + 1}: ${f} loaded!`)
-        bot.command.set(f, props);
+        bot.commands.set(f, props);
     });
 
 });
@@ -43,7 +43,8 @@ bot.on("message", async message => {
 
     if (!command.startsWith(prefix)) return;
 
-    let cmds
+    let cmd = bot.commands.get(command.slice(prefix.length));
+    if(cmd) cmd.run(bot, message, args);
 });
 
 bot.login(botSettings.token);
