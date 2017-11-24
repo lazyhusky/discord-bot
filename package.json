@@ -1,0 +1,14 @@
+{
+  "name": "husky-bot",
+  "version": "0.0.2",
+  "description": "A custom discord bot by Lazy Husky",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lazy Husky",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.2.1"
+  }
+}
